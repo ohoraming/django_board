@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container w-75">
+    <h1>[{{ board.board_id }}] {{ board.title }} - {{ board.category }}</h1> 
+    <hr>
+    내용:
+    <div>
+        {{ board.content }}
+    </div>
+    <hr>
+    <li>is_deleted: {{ board.is_deleted }}</li>
+    <li>created_at: {{ board.created_at }}</li>
+    <li>modified_at: {{ board.modified_at }}</li>
+    <a class="btn btn-primary my-3" href="{% url 'board:update' board.board_id %}">수정</a>
+    <a class="btn btn-danger my-3" href="{% url 'board:delete' board.board_id %}">삭제</a>
+</div>
+{% endblock %}

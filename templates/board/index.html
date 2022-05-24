@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container w-75 my-3">
+    <a class="btn btn-primary my-3" href="{% url 'board:create' %} ">게시글 작성하기</a>
+
+    {% if board_list %}
+    <table class="table my-3">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">TITLE</th>
+                <th scope="col">생성일</th>
+                <th scope="col">수정일</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for board in board_list %}
+            <tr>
+                <th scope=row>{{ board.board_id }}</th>
+                <td><a href="{% url 'board:detail' board.board_id %}">{{board.title}} </a></td>
+                <td>{{ board.created_at }}</td>
+                <td>{{ board.modified_at }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>게시글이 없습니다!</p>
+    {% endif %}
+</div>
+{% endblock %}
